@@ -17,7 +17,7 @@ public class SysUserInfo implements Serializable {
 
     private String password;
 
-    private Long roleId;
+    private String roleIds;
 
     private static final long serialVersionUID = 1L;
 

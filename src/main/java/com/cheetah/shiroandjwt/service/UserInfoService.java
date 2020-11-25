@@ -2,6 +2,10 @@ package com.cheetah.shiroandjwt.service;
 
 
 import com.cheetah.shiroandjwt.entity.SysUserInfo;
+import com.cheetah.shiroandjwt.entity.dto.UserTokenDTO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Set;
 
 /**
  * @ClassName: UserInfoService
@@ -12,6 +16,7 @@ import com.cheetah.shiroandjwt.entity.SysUserInfo;
  */
 public interface UserInfoService {
 
-    //通过用户名密码获取用户信息
-    SysUserInfo getUserByLogin(String username);
+    //用户登陆添加token信息
+    UserTokenDTO login(UserTokenDTO userTokenDTO);
+
 }

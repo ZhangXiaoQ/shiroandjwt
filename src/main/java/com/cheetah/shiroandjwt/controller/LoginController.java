@@ -2,6 +2,7 @@ package com.cheetah.shiroandjwt.controller;
 
 import com.cheetah.shiroandjwt.common.AjaxResult;
 import com.cheetah.shiroandjwt.entity.SysUserInfo;
+import com.cheetah.shiroandjwt.entity.dto.UserTokenDTO;
 import com.cheetah.shiroandjwt.service.UserInfoService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -28,10 +29,7 @@ public class LoginController {
     private UserInfoService userInfoService;
 
     @PostMapping("login")
-    public AjaxResult login(@RequestBody SysUserInfo userInfo){
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getName(),userInfo.getPassword());
-        subject.login(token);
-        return AjaxResult.success("登陆成功");
+    public AjaxResult login(@RequestBody UserTokenDTO userTokenDTO){
+        return AjaxResult.success(userInfoService.login(userTokenDTO));
     }
 }

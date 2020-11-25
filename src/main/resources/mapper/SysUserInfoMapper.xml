@@ -5,24 +5,16 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="role_ids" jdbcType="BIGINT" property="roleIds" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, password, roleId
+    id, name, password, roleIds
   </sql>
 
-  <!--通过用户名密码获取用户信息-->
+  <!--通过用户名获取用户信息-->
   <select id="getUserByLogin" parameterType="java.lang.String"
           resultType="com.cheetah.shiroandjwt.entity.SysUserInfo">
         select * from sys_user_info where name = #{username}
-    </select>
-
-  <!--通过用户名获取角色权限-->
-  <select id="getRole" parameterType="java.lang.String"
-          resultType="java.lang.String">
-        SELECT role.role_name FROM `sys_user_info` info
-          LEFT JOIN sys_role role on info.role_id = role.id
-          where info.name =  #{username}
     </select>
 
 
