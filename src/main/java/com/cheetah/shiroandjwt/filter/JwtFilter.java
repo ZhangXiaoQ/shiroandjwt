@@ -1,6 +1,7 @@
 package com.cheetah.shiroandjwt.filter;
 
 import com.cheetah.shiroandjwt.common.CommonResultStatus;
+import com.cheetah.shiroandjwt.exception.BusinessException;
 import com.cheetah.shiroandjwt.jwt.JwtToken;
 import com.cheetah.shiroandjwt.util.JSONUtil;
 import org.apache.shiro.web.filter.AccessControlFilter;
@@ -42,7 +43,7 @@ public class JwtFilter extends AccessControlFilter {
      *  表示当访问拒绝时是否已经处理了，
      *  如果返回true表示需要继续处理，
      *  如果返回false表示该拦截器实例已经处理了，将直接返回即可
-     * @author zyq
+     * @author cheetah
      * @date 2020/11/24
      * @param request:
       * @param response:
@@ -65,8 +66,9 @@ public class JwtFilter extends AccessControlFilter {
                 return true;
             } catch (Exception e) {
             }
+        }else{
+            throw new BusinessException(CommonResultStatus.LOGIN_ERROR);
         }
-        onLoginFail(response);
         return false;
     }
 
@@ -86,17 +88,4 @@ public class JwtFilter extends AccessControlFilter {
         return authorization != null;
     }
 
-
-    /**
-     * 登录失败时默认返回401状态码
-     *
-     * @param response
-     * @throws IOException
-     */
-    private void onLoginFail(ServletResponse response) throws IOException {
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-        httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        httpResponse.setContentType("application/json;charset=utf-8");
-        httpResponse.getWriter().write(JSONUtil.toJSONString(CommonResultStatus.LOGIN_ERROR));
-    }
 }

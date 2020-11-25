@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @ClassName: JwtRealm
  * @Description: 自定义的身份验证与权限验证
  * @Date: 2020/11/24
- * @Author: zyq
+ * @Author: cheetah
  * @Version: 1.0
  */
 @Slf4j

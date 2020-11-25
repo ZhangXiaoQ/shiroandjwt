@@ -13,7 +13,7 @@ import java.util.Date;
  * @ClassName: JwtUtil
  * @Description: jwt工具类
  * @Date: 2020/9/25
- * @Author: zyq
+ * @Author: cheetah
  * @Version: 1.0
  */
 public class JwtUtil {
